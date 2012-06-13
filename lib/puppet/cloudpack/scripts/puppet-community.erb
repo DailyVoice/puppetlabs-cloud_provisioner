@@ -118,7 +118,7 @@ function facts_dot_d() {
   <% if options[:facts] %>
   echo "Installing custom facts"
   <% options[:facts].each do |fact,value| %>
-  echo <%= fact %>=<%= value %> > /etc/facter/facts.d/<%= fact %>.txt
+  echo <%= value %> > /etc/facter/facts.d/<%= fact %>.txt
   <% end %>
   <% end %>
 }
