@@ -775,6 +775,8 @@ module Puppet::CloudPack
 
       # TODO: Wait for C.S.R.?
 
+      Puppet.notice "Sleeping for 60 seconds before signing certificate ..."
+      sleep 60
       Puppet.notice "Signing certificate ..."
       begin
         Puppet::Face[:certificate, '0.0.1'].sign(certname, cert_options)
@@ -782,12 +784,12 @@ module Puppet::CloudPack
       rescue Puppet::Error => e
         # TODO: Write useful next steps.
         Puppet.err "Signing certificate ... Failed"
-        Puppet.err "Signing certificate error: #{e}"
+        Puppet.err "Signing certificate Puppet::Error: #{e}"
         exit(1)
       rescue Net::HTTPError => e
         # TODO: Write useful next steps
         Puppet.warning "Signing certificate ... Failed"
-        Puppet.err "Signing certificate error: #{e}"
+        Puppet.err "Signing certificate Net::HTTPError: #{e}"
         exit(1)
       end
     end
